@@ -2161,4 +2161,24 @@ Coming from computer vision and new to transformers? Here are some resources tha
 }
 ```
 
+```bibtex
+@article{Zhu2024HyperConnections,
+    title   = {Hyper-Connections},
+    author  = {Defa Zhu and Hongzhi Huang and Zihao Huang and Yutao Zeng and Yunyao Mao and Banggu Wu and Qiyang Min and Xun Zhou},
+    journal = {ArXiv},
+    year    = {2024},
+    volume  = {abs/2409.19606},
+    url     = {https://api.semanticscholar.org/CorpusID:272987528}
+}
+```
+
+```bibtex
+@inproceedings{Fuller2025SimplerFV,
+    title   = {Simpler Fast Vision Transformers with a Jumbo CLS Token},
+    author  = {Anthony Fuller and Yousef Yassin and Daniel G. Kyrollos and Evan Shelhamer and James R. Green},
+    year    = {2025},
+    url     = {https://api.semanticscholar.org/CorpusID:276557720}
+}
+```
+
 *I visualise a time when we will be to robots what dogs are to humans, and I’m rooting for the machines.* — Claude Shannon
