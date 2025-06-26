@@ -66,15 +66,15 @@ def _cct(num_layers, num_heads, mlp_ratio, embedding_dim,
                mlp_ratio=mlp_ratio,
                embedding_dim=embedding_dim,
                kernel_size=kernel_size,
-               stride=stride,
-               padding=padding,
+               stride=int(stride) if stride is not None else 1,
+               padding=int(padding) if padding is not None else 0,
                *args, **kwargs)
 
 # positional
 
 def sinusoidal_embedding(n_channels, dim):
     pe = torch.FloatTensor([[p / (10000 ** (2 * (i // 2) / dim)) for i in range(dim)]
-                            for p in range(n_channels)])
+                            for p in range(n_channels)]).to(torch.float32)
     pe[:, 0::2] = torch.sin(pe[:, 0::2])
     pe[:, 1::2] = torch.cos(pe[:, 1::2])
     return rearrange(pe, '... -> 1 ...')
@@ -144,7 +144,7 @@ class TransformerEncoderLayer(nn.Module):
 class DropPath(nn.Module):
     def __init__(self, drop_prob=None):
         super().__init__()
-        self.drop_prob = float(drop_prob)
+        self.drop_prob = float(drop_prob) if drop_prob is not None else 0.0
 
     def forward(self, x):
         batch, drop_prob, device, dtype = x.shape[0], self.drop_prob, x.device, x.dtype
@@ -184,7 +184,7 @@ class Tokenizer(nn.Module):
                           kernel_size=(kernel_size, kernel_size),
                           stride=(stride, stride),
                           padding=(padding, padding), bias=conv_bias),
-                nn.Identity() if not exists(activation) else activation(),
+                nn.Identity() if not exists(activation) or activation is None else activation(),
                 nn.MaxPool2d(kernel_size=pooling_kernel_size,
                              stride=pooling_stride,
                              padding=pooling_padding) if max_pool else nn.Identity()
@@ -233,6 +233,7 @@ class TransformerClassifier(nn.Module):
             f" the sequence length was not specified."
 
         if not seq_pool:
+            sequence_length = 1 if sequence_length is None else sequence_length
             sequence_length += 1
             self.class_emb = nn.Parameter(torch.zeros(1, 1, self.embedding_dim), requires_grad=True)
         else:
@@ -241,7 +242,7 @@ class TransformerClassifier(nn.Module):
         if positional_embedding == 'none':
             self.positional_emb = None
         elif positional_embedding == 'learnable':
-            self.positional_emb = nn.Parameter(torch.zeros(1, sequence_length, embedding_dim),
+            self.positional_emb = nn.Parameter(torch.zeros(1, sequence_length if sequence_length is not None else 1, embedding_dim),
                                                requires_grad=True)
             nn.init.trunc_normal_(self.positional_emb, std=0.2)
         else:
@@ -273,7 +274,7 @@ class TransformerClassifier(nn.Module):
             cls_token = repeat(self.class_emb, '1 1 d -> b 1 d', b = b)
             x = torch.cat((cls_token, x), dim=1)
 
-        if exists(self.positional_emb):
+        if self.positional_emb is not None:
             x += self.positional_emb
 
         x = self.dropout(x)
