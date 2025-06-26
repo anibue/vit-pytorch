@@ -49,15 +49,15 @@
 
 ## Vision Transformer - Pytorch
 
-Implementation of <a href="https://openreview.net/pdf?id=YicbFdNTTy">Vision Transformer</a>, a simple way to achieve SOTA in vision classification with only a single transformer encoder, in Pytorch. Significance is further explained in <a href="https://www.youtube.com/watch?v=TrdevFK_am4">Yannic Kilcher's</a> video. There's really not much to code here, but may as well lay it out for everyone so we expedite the attention revolution.
+Implementation of `<a href="https://openreview.net/pdf?id=YicbFdNTTy">`Vision Transformer `</a>`, a simple way to achieve SOTA in vision classification with only a single transformer encoder, in Pytorch. Significance is further explained in `<a href="https://www.youtube.com/watch?v=TrdevFK_am4">`Yannic Kilcher's `</a>` video. There's really not much to code here, but may as well lay it out for everyone so we expedite the attention revolution.
 
-For a Pytorch implementation with pretrained models, please see Ross Wightman's repository <a href="https://github.com/rwightman/pytorch-image-models">here</a>.
+For a Pytorch implementation with pretrained models, please see Ross Wightman's repository `<a href="https://github.com/rwightman/pytorch-image-models">`here `</a>`.
 
-The official Jax repository is <a href="https://github.com/google-research/vision_transformer">here</a>.
+The official Jax repository is `<a href="https://github.com/google-research/vision_transformer">`here `</a>`.
 
-A tensorflow2 translation also exists <a href="https://github.com/taki0112/vit-tensorflow">here</a>, created by research scientist <a href="https://github.com/taki0112">Junho Kim</a>! 🙏
+A tensorflow2 translation also exists `<a href="https://github.com/taki0112/vit-tensorflow">`here `</a>`, created by research scientist `<a href="https://github.com/taki0112">`Junho Kim `</a>`! 🙏
 
-<a href="https://github.com/conceptofmind/vit-flax">Flax translation</a> by <a href="https://github.com/conceptofmind">Enrico Shippole</a>!
+`<a href="https://github.com/conceptofmind/vit-flax">`Flax translation `</a>` by `<a href="https://github.com/conceptofmind">`Enrico Shippole `</a>`!
 
 ## Install
 
@@ -90,33 +90,21 @@ preds = v(img) # (1, 1000)
 
 ## Parameters
 
-- `image_size`: int.  
-Image size. If you have rectangular images, make sure your image size is the maximum of the width and height
-- `patch_size`: int.  
-Size of patches. `image_size` must be divisible by `patch_size`.  
-The number of patches is: ` n = (image_size // patch_size) ** 2` and `n` **must be greater than 16**.
-- `num_classes`: int.  
-Number of classes to classify.
-- `dim`: int.  
-Last dimension of output tensor after linear transformation `nn.Linear(..., dim)`.
-- `depth`: int.  
-Number of Transformer blocks.
-- `heads`: int.  
-Number of heads in Multi-head Attention layer. 
-- `mlp_dim`: int.  
-Dimension of the MLP (FeedForward) layer. 
-- `channels`: int, default `3`.  
-Number of image's channels. 
-- `dropout`: float between `[0, 1]`, default `0.`.  
-Dropout rate. 
-- `emb_dropout`: float between `[0, 1]`, default `0`.  
-Embedding dropout rate.
+- `image_size`: int.Image size. If you have rectangular images, make sure your image size is the maximum of the width and height
+- `patch_size`: int.Size of patches. `image_size` must be divisible by `patch_size`.The number of patches is: ` n = (image_size // patch_size) ** 2` and `n` **must be greater than 16**.
+- `num_classes`: int.Number of classes to classify.
+- `dim`: int.Last dimension of output tensor after linear transformation `nn.Linear(..., dim)`.
+- `depth`: int.Number of Transformer blocks.
+- `heads`: int.Number of heads in Multi-head Attention layer.
+- `mlp_dim`: int.Dimension of the MLP (FeedForward) layer.
+- `channels`: int, default `3`.Number of image's channels.
+- `dropout`: float between `[0, 1]`, default `0.`.Dropout rate.
+- `emb_dropout`: float between `[0, 1]`, default `0`.Embedding dropout rate.
 - `pool`: string, either `cls` token pooling or `mean` pooling
-
 
 ## Simple ViT
 
-<a href="https://arxiv.org/abs/2205.01580">An update</a> from some of the same authors of the original paper proposes simplifications to `ViT` that allows it to train faster and better.
+`<a href="https://arxiv.org/abs/2205.01580">`An update `</a>` from some of the same authors of the original paper proposes simplifications to `ViT` that allows it to train faster and better.
 
 Among these simplifications include 2d sinusoidal positional embedding, global average pooling (no CLS token), no dropout, batch sizes of 1024 rather than 4096, and use of RandAugment and MixUp augmentations. They also show that a simple linear at the end is not significantly worse than the original MLP head
 
@@ -145,7 +133,7 @@ preds = v(img) # (1, 1000)
 
 <img src="./images/navit.png" width="450px"></img>
 
-<a href="https://arxiv.org/abs/2307.06304">This paper</a> proposes to leverage the flexibility of attention and masking for variable lengthed sequences to train images of multiple resolution, packed into a single batch. They demonstrate much faster training and improved accuracies, with the only cost being extra complexity in the architecture and dataloading. They use factorized 2d positional encodings, token dropping, as well as query-key normalization.
+`<a href="https://arxiv.org/abs/2307.06304">`This paper `</a>` proposes to leverage the flexibility of attention and masking for variable lengthed sequences to train images of multiple resolution, packed into a single batch. They demonstrate much faster training and improved accuracies, with the only cost being extra complexity in the architecture and dataloading. They use factorized 2d positional encodings, token dropping, as well as query-key normalization.
 
 You can use it as follows
 
@@ -198,7 +186,7 @@ preds = v(
 ) # (5, 1000)
 ```
 
-Finally, if you would like to make use of a flavor of NaViT using <a href="https://pytorch.org/tutorials/prototype/nestedtensor.html">nested tensors</a> (which will omit a lot of the masking and padding altogether), make sure you are on version `2.5` and import as follows
+Finally, if you would like to make use of a flavor of NaViT using `<a href="https://pytorch.org/tutorials/prototype/nestedtensor.html">`nested tensors `</a>` (which will omit a lot of the masking and padding altogether), make sure you are on version `2.5` and import as follows
 
 ```python
 import torch
@@ -234,7 +222,7 @@ assert preds.shape == (5, 1000)
 
 <img src="./images/distill.png" width="300px"></img>
 
-A recent <a href="https://arxiv.org/abs/2012.12877">paper</a> has shown that use of a distillation token for distilling knowledge from convolutional nets to vision transformer can yield small and efficient vision transformers. This repository offers the means to do distillation easily.
+A recent `<a href="https://arxiv.org/abs/2012.12877">`paper `</a>` has shown that use of a distillation token for distilling knowledge from convolutional nets to vision transformer can yield small and efficient vision transformers. This repository offers the means to do distillation easily.
 
 ex. distilling from Resnet50 (or any teacher) to a vision transformer
 
@@ -286,10 +274,9 @@ v = v.to_vit()
 type(v) # <class 'vit_pytorch.vit_pytorch.ViT'>
 ```
 
-
 ## Deep ViT
 
-This <a href="https://arxiv.org/abs/2103.11886">paper</a> notes that ViT struggles to attend at greater depths (past 12 layers), and suggests mixing the attention of each head post-softmax as a solution, dubbed Re-attention. The results line up with the <a href="https://github.com/lucidrains/x-transformers#talking-heads-attention">Talking Heads</a> paper from NLP.
+This `<a href="https://arxiv.org/abs/2103.11886">`paper `</a>` notes that ViT struggles to attend at greater depths (past 12 layers), and suggests mixing the attention of each head post-softmax as a solution, dubbed Re-attention. The results line up with the `<a href="https://github.com/lucidrains/x-transformers#talking-heads-attention">`Talking Heads `</a>` paper from NLP.
 
 You can use it as follows
 
@@ -316,9 +303,9 @@ preds = v(img) # (1, 1000)
 
 ## CaiT
 
-<a href="https://arxiv.org/abs/2103.17239">This paper</a> also notes difficulty in training vision transformers at greater depths and proposes two solutions. First it proposes to do per-channel multiplication of the output of the residual block. Second, it proposes to have the patches attend to one another, and only allow the CLS token to attend to the patches in the last few layers.
+`<a href="https://arxiv.org/abs/2103.17239">`This paper `</a>` also notes difficulty in training vision transformers at greater depths and proposes two solutions. First it proposes to do per-channel multiplication of the output of the residual block. Second, it proposes to have the patches attend to one another, and only allow the CLS token to attend to the patches in the last few layers.
 
-They also add <a href="https://github.com/lucidrains/x-transformers#talking-heads-attention">Talking Heads</a>, noting improvements
+They also add `<a href="https://github.com/lucidrains/x-transformers#talking-heads-attention">`Talking Heads `</a>`, noting improvements
 
 You can use this scheme as follows
 
@@ -349,7 +336,7 @@ preds = v(img) # (1, 1000)
 
 <img src="./images/t2t.png" width="400px"></img>
 
-<a href="https://arxiv.org/abs/2101.11986">This paper</a> proposes that the first couple layers should downsample the image sequence by unfolding, leading to overlapping image data in each token as shown in the figure above. You can use this variant of the `ViT` as follows.
+`<a href="https://arxiv.org/abs/2101.11986">`This paper `</a>` proposes that the first couple layers should downsample the image sequence by unfolding, leading to overlapping image data in each token as shown in the figure above. You can use this variant of the `ViT` as follows.
 
 ```python
 import torch
@@ -374,11 +361,12 @@ preds = v(img) # (1, 1000)
 
 <img src="https://raw.githubusercontent.com/SHI-Labs/Compact-Transformers/main/images/model_sym.png" width="400px"></img>
 
-<a href="https://arxiv.org/abs/2104.05704">CCT</a> proposes compact transformers
+`<a href="https://arxiv.org/abs/2104.05704">`CCT `</a>` proposes compact transformers
 by using convolutions instead of patching and performing sequence pooling. This
 allows for CCT to have high accuracy and a low number of parameters.
 
 You can use this with two methods
+
 ```python
 import torch
 from vit_pytorch.cct import CCT
@@ -426,14 +414,14 @@ cct = cct_14(
 )
 ```
 
-<a href="https://github.com/SHI-Labs/Compact-Transformers">Official
-Repository</a> includes links to pretrained model checkpoints.
+`<a href="https://github.com/SHI-Labs/Compact-Transformers">`Official
+Repository `</a>` includes links to pretrained model checkpoints.
 
 ## Cross ViT
 
 <img src="./images/cross_vit.png" width="400px"></img>
 
-<a href="https://arxiv.org/abs/2103.14899">This paper</a> proposes to have two vision transformers processing the image at different scales, cross attending to one every so often. They show improvements on top of the base vision transformer.
+`<a href="https://arxiv.org/abs/2103.14899">`This paper `</a>` proposes to have two vision transformers processing the image at different scales, cross attending to one every so often. They show improvements on top of the base vision transformer.
 
 ```python
 import torch
@@ -468,7 +456,7 @@ pred = v(img) # (1, 1000)
 
 <img src="./images/pit.png" width="400px"></img>
 
-<a href="https://arxiv.org/abs/2103.16302">This paper</a> proposes to downsample the tokens through a pooling procedure using depth-wise convolutions.
+`<a href="https://arxiv.org/abs/2103.16302">`This paper `</a>` proposes to downsample the tokens through a pooling procedure using depth-wise convolutions.
 
 ```python
 import torch
@@ -497,9 +485,9 @@ preds = v(img) # (1, 1000)
 
 <img src="./images/levit.png" width="300px"></img>
 
-<a href="https://arxiv.org/abs/2104.01136">This paper</a> proposes a number of changes, including (1) convolutional embedding instead of patch-wise projection (2) downsampling in stages (3) extra non-linearity in attention (4) 2d relative positional biases instead of initial absolute positional bias (5) batchnorm in place of layernorm.
+`<a href="https://arxiv.org/abs/2104.01136">`This paper `</a>` proposes a number of changes, including (1) convolutional embedding instead of patch-wise projection (2) downsampling in stages (3) extra non-linearity in attention (4) 2d relative positional biases instead of initial absolute positional bias (5) batchnorm in place of layernorm.
 
-<a href="https://github.com/facebookresearch/LeViT">Official repository</a>
+`<a href="https://github.com/facebookresearch/LeViT">`Official repository `</a>`
 
 ```python
 import torch
@@ -525,7 +513,7 @@ levit(img) # (1, 1000)
 
 <img src="./images/cvt.png" width="400px"></img>
 
-<a href="https://arxiv.org/abs/2103.15808">This paper</a> proposes mixing convolutions and attention. Specifically, convolutions are used to embed and downsample the image / feature map in three stages. Depthwise-convoltion is also used to project the queries, keys, and values for attention.
+`<a href="https://arxiv.org/abs/2103.15808">`This paper `</a>` proposes mixing convolutions and attention. Specifically, convolutions are used to embed and downsample the image / feature map in three stages. Depthwise-convoltion is also used to project the queries, keys, and values for attention.
 
 ```python
 import torch
@@ -569,7 +557,7 @@ pred = v(img) # (1, 1000)
 
 <img src="./images/twins_svt.png" width="400px"></img>
 
-This <a href="https://arxiv.org/abs/2104.13840">paper</a> proposes mixing local and global attention, along with position encoding generator (proposed in <a href="https://arxiv.org/abs/2102.10882">CPVT</a>) and global average pooling, to achieve the same results as <a href="https://arxiv.org/abs/2103.14030">Swin</a>, without the extra complexity of shifted windows, CLS tokens, nor positional embeddings.
+This `<a href="https://arxiv.org/abs/2104.13840">`paper `</a>` proposes mixing local and global attention, along with position encoding generator (proposed in `<a href="https://arxiv.org/abs/2102.10882">`CPVT `</a>`) and global average pooling, to achieve the same results as `<a href="https://arxiv.org/abs/2103.14030">`Swin `</a>`, without the extra complexity of shifted windows, CLS tokens, nor positional embeddings.
 
 ```python
 import torch
@@ -612,7 +600,7 @@ pred = model(img) # (1, 1000)
 
 <img src="./images/regionvit2.png" width="400px"></img>
 
-<a href="https://arxiv.org/abs/2106.02689">This paper</a> proposes to divide up the feature map into local regions, whereby the local tokens attend to each other. Each local region has its own regional token which then attends to all its local tokens, as well as other regional tokens.
+`<a href="https://arxiv.org/abs/2106.02689">`This paper `</a>` proposes to divide up the feature map into local regions, whereby the local tokens attend to each other. Each local region has its own regional token which then attends to all its local tokens, as well as other regional tokens.
 
 You can use it as follows
 
@@ -640,7 +628,7 @@ pred = model(img) # (1, 1000)
 
 <img src="./images/crossformer2.png" width="400px"></img>
 
-This <a href="https://arxiv.org/abs/2108.00154">paper</a> beats PVT and Swin using alternating local and global attention. The global attention is done across the windowing dimension for reduced complexity, much like the scheme used for axial attention.
+This `<a href="https://arxiv.org/abs/2108.00154">`paper `</a>` beats PVT and Swin using alternating local and global attention. The global attention is done across the windowing dimension for reduced complexity, much like the scheme used for axial attention.
 
 They also have cross-scale embedding layer, which they shown to be a generic layer that can improve all vision transformers. Dynamic relative positional bias was also formulated to allow the net to generalize to images of greater resolution.
 
@@ -667,7 +655,7 @@ pred = model(img) # (1, 1000)
 
 <img src="./images/scalable-vit-2.png" width="400px"></img>
 
-This Bytedance AI <a href="https://arxiv.org/abs/2203.10790">paper</a> proposes the Scalable Self Attention (SSA) and the Interactive Windowed Self Attention (IWSA) modules. The SSA alleviates the computation needed at earlier stages by reducing the key / value feature map by some factor (`reduction_factor`), while modulating the dimension of the queries and keys (`ssa_dim_key`). The IWSA performs self attention within local windows, similar to other vision transformer papers. However, they add a residual of the values, passed through a convolution of kernel size 3, which they named Local Interactive Module (LIM).
+This Bytedance AI `<a href="https://arxiv.org/abs/2203.10790">`paper `</a>` proposes the Scalable Self Attention (SSA) and the Interactive Windowed Self Attention (IWSA) modules. The SSA alleviates the computation needed at earlier stages by reducing the key / value feature map by some factor (`reduction_factor`), while modulating the dimension of the queries and keys (`ssa_dim_key`). The IWSA performs self attention within local windows, similar to other vision transformer papers. However, they add a residual of the values, passed through a convolution of kernel size 3, which they named Local Interactive Module (LIM).
 
 They make the claim in this paper that this scheme outperforms Swin Transformer, and also demonstrate competitive performance against Crossformer.
 
@@ -697,7 +685,7 @@ preds = model(img) # (1, 1000)
 
 <img src="./images/sep-vit.png" width="400px"></img>
 
-Another <a href="https://arxiv.org/abs/2203.15380">Bytedance AI paper</a>, it proposes a depthwise-pointwise self-attention layer that seems largely inspired by mobilenet's depthwise-separable convolution. The most interesting aspect is the reuse of the feature map from the depthwise self-attention stage as the values for the pointwise self-attention, as shown in the diagram above.
+Another `<a href="https://arxiv.org/abs/2203.15380">`Bytedance AI paper `</a>`, it proposes a depthwise-pointwise self-attention layer that seems largely inspired by mobilenet's depthwise-separable convolution. The most interesting aspect is the reuse of the feature map from the depthwise self-attention stage as the values for the pointwise self-attention, as shown in the diagram above.
 
 I have decided to include only the version of `SepViT` with this specific self-attention layer, as the grouped attention layers are not remarkable nor novel, and the authors were not clear on how they treated the window tokens for the group self-attention layer. Besides, it seems like with `DSSA` layer alone, they were able to beat Swin.
 
@@ -726,7 +714,7 @@ preds = v(img) # (1, 1000)
 
 <img src="./images/max-vit.png" width="400px"></img>
 
-<a href="https://arxiv.org/abs/2204.01697">This paper</a> proposes a hybrid convolutional / attention network, using MBConv from the convolution side, and then block / grid axial sparse attention.
+`<a href="https://arxiv.org/abs/2204.01697">`This paper `</a>` proposes a hybrid convolutional / attention network, using MBConv from the convolution side, and then block / grid axial sparse attention.
 
 They also claim this specific vision transformer is good for generative models (GANs).
 
@@ -757,7 +745,7 @@ preds = v(img) # (2, 1000)
 
 <img src="./images/nest.png" width="400px"></img>
 
-This <a href="https://arxiv.org/abs/2105.12723">paper</a> decided to process the image in hierarchical stages, with attention only within tokens of local blocks, which aggregate as it moves up the hierarchy. The aggregation is done in the image plane, and contains a convolution and subsequent maxpool to allow it to pass information across the boundary.
+This `<a href="https://arxiv.org/abs/2105.12723">`paper `</a>` decided to process the image in hierarchical stages, with attention only within tokens of local blocks, which aggregate as it moves up the hierarchy. The aggregation is done in the image plane, and contains a convolution and subsequent maxpool to allow it to pass information across the boundary.
 
 You can use it with the following code (ex. NesT-T)
 
@@ -784,7 +772,7 @@ pred = nest(img) # (1, 1000)
 
 <img src="./images/mbvit.png" width="400px"></img>
 
-This <a href="https://arxiv.org/abs/2110.02178">paper</a> introduce MobileViT, a light-weight and general purpose vision transformer for mobile devices. MobileViT presents a different
+This `<a href="https://arxiv.org/abs/2110.02178">`paper `</a>` introduce MobileViT, a light-weight and general purpose vision transformer for mobile devices. MobileViT presents a different
 perspective for the global processing of information with transformers.
 
 You can use it with the following code (ex. mobilevit_xs)
@@ -809,7 +797,7 @@ pred = mbvit_xs(img) # (1, 1000)
 
 <img src="./images/xcit.png" width="400px"></img>
 
-This <a href="https://arxiv.org/abs/2106.09681">paper</a> introduces the cross covariance attention (abbreviated XCA). One can think of it as doing attention across the features dimension rather than the spatial one (another perspective would be a dynamic 1x1 convolution, the kernel being attention map defined by spatial correlations).
+This `<a href="https://arxiv.org/abs/2106.09681">`paper `</a>` introduces the cross covariance attention (abbreviated XCA). One can think of it as doing attention across the features dimension rather than the spatial one (another perspective would be a dynamic 1x1 convolution, the kernel being attention map defined by spatial correlations).
 
 Technically, this amounts to simply transposing the query, key, values before executing cosine similarity attention with learned temperature.
 
@@ -841,7 +829,7 @@ preds = v(img) # (1, 1000)
 
 <img src="./images/simmim.png" width="400px"/>
 
-This <a href="https://arxiv.org/abs/2111.09886">paper</a> proposes a simple masked image modeling (SimMIM) scheme, using only a linear projection off the masked tokens into pixel space followed by an L1 loss with the pixel values of the masked patches. Results are competitive with other more complicated approaches.
+This `<a href="https://arxiv.org/abs/2111.09886">`paper `</a>` proposes a simple masked image modeling (SimMIM) scheme, using only a linear projection off the masked tokens into pixel space followed by an L1 loss with the pixel values of the masked patches. Results are competitive with other more complicated approaches.
 
 You can use this as follows
 
@@ -876,16 +864,15 @@ loss.backward()
 torch.save(v.state_dict(), './trained-vit.pt')
 ```
 
-
 ## Masked Autoencoder
 
 <img src="./images/mae.png" width="400px"/>
 
-A new <a href="https://arxiv.org/abs/2111.06377">Kaiming He paper</a> proposes a simple autoencoder scheme where the vision transformer attends to a set of unmasked patches, and a smaller decoder tries to reconstruct the masked pixel values.
+A new `<a href="https://arxiv.org/abs/2111.06377">`Kaiming He paper `</a>` proposes a simple autoencoder scheme where the vision transformer attends to a set of unmasked patches, and a smaller decoder tries to reconstruct the masked pixel values.
 
-<a href="https://www.youtube.com/watch?v=LKixq2S2Pz8">DeepReader quick paper review</a>
+`<a href="https://www.youtube.com/watch?v=LKixq2S2Pz8">`DeepReader quick paper review `</a>`
 
-<a href="https://www.youtube.com/watch?v=Dp6iICL2dVI">AI Coffeebreak with Letitia</a>
+`<a href="https://www.youtube.com/watch?v=Dp6iICL2dVI">`AI Coffeebreak with Letitia `</a>`
 
 You can use it with the following code
 
@@ -924,7 +911,7 @@ torch.save(v.state_dict(), './trained-vit.pt')
 
 ## Masked Patch Prediction
 
-Thanks to <a href="https://github.com/zankner">Zach</a>, you can train using the original masked patch prediction task presented in the paper, with the following code.
+Thanks to `<a href="https://github.com/zankner">`Zach `</a>`, you can train using the original masked patch prediction task presented in the paper, with the following code.
 
 ```python
 import torch
@@ -972,7 +959,7 @@ torch.save(model.state_dict(), './pretrained-net.pt')
 
 <img src="./images/mp3.png" width="400px"></img>
 
-New <a href="https://arxiv.org/abs/2207.07611">paper</a> that introduces masked position prediction pre-training criteria. This strategy is more efficient than the Masked Autoencoder strategy and has comparable performance.  
+New `<a href="https://arxiv.org/abs/2207.07611">`paper `</a>` that introduces masked position prediction pre-training criteria. This strategy is more efficient than the Masked Autoencoder strategy and has comparable performance.
 
 ```python
 import torch
@@ -1010,7 +997,7 @@ torch.save(v.state_dict(), './trained-vit.pt')
 
 <img src="./images/ats.png" width="400px"></img>
 
-This <a href="https://arxiv.org/abs/2111.15667">paper</a> proposes to use the CLS attention scores, re-weighed by the norms of the value heads, as means to discard unimportant tokens at different layers.
+This `<a href="https://arxiv.org/abs/2111.15667">`paper `</a>` proposes to use the CLS attention scores, re-weighed by the norms of the value heads, as means to discard unimportant tokens at different layers.
 
 ```python
 import torch
@@ -1041,10 +1028,9 @@ preds, token_ids = v(img, return_sampled_token_ids = True) # (4, 1000), (4, <=8)
 
 ## Patch Merger
 
-
 <img src="./images/patch_merger.png" width="400px"></img>
 
-This <a href="https://arxiv.org/abs/2202.12015">paper</a> proposes a simple module (Patch Merger) for reducing the number of tokens at any layer of a vision transformer without sacrificing performance.
+This `<a href="https://arxiv.org/abs/2202.12015">`paper `</a>` proposes a simple module (Patch Merger) for reducing the number of tokens at any layer of a vision transformer without sacrificing performance.
 
 ```python
 import torch
@@ -1089,7 +1075,7 @@ out = merger(features) # (4, 8, 1024)
 
 <img src="./images/vit_for_small_datasets.png" width="400px"></img>
 
-This <a href="https://arxiv.org/abs/2112.13492">paper</a> proposes a new image to patch function that incorporates shifts of the image, before normalizing and dividing the image into patches. I have found shifting to be extremely helpful in some other transformers work, so decided to include this for further explorations. It also includes the `LSA` with the learned temperature and masking out of a token's attention to itself.
+This `<a href="https://arxiv.org/abs/2112.13492">`paper `</a>` proposes a new image to patch function that incorporates shifts of the image, before normalizing and dividing the image into patches. I have found shifting to be extremely helpful in some other transformers work, so decided to include this for further explorations. It also includes the `LSA` with the learned temperature and masking out of a token's attention to itself.
 
 You can use as follows:
 
@@ -1185,7 +1171,7 @@ video = torch.randn(4, 3, 16, 128, 128) # (batch, channels, frames, height, widt
 preds = v(video) # (4, 1000)
 ```
 
-3D version of <a href="https://github.com/lucidrains/vit-pytorch#cct">CCT</a>
+3D version of `<a href="https://github.com/lucidrains/vit-pytorch#cct">`CCT `</a>`
 
 ```python
 import torch
@@ -1218,7 +1204,7 @@ pred = cct(video)
 
 <img src="./images/vivit.png" width="350px"></img>
 
-This <a href="https://arxiv.org/abs/2103.15691">paper</a> offers 3 different types of architectures for efficient attention of videos, with the main theme being factorizing the attention across space and time. This repository includes the factorized encoder and the factorized self-attention variant.
+This `<a href="https://arxiv.org/abs/2103.15691">`paper `</a>` offers 3 different types of architectures for efficient attention of videos, with the main theme being factorizing the attention across space and time. This repository includes the factorized encoder and the factorized self-attention variant.
 The factorized encoder variant is a spatial transformer followed by a temporal one. The factorized self-attention variant is a spatio-temporal transformer with alternating spatial and temporal self-attention layers.
 
 ```python
@@ -1248,7 +1234,7 @@ preds = v(video) # (4, 1000)
 
 <img src="./images/parallel-vit.png" width="350px"></img>
 
-This <a href="https://arxiv.org/abs/2203.09795">paper</a> propose parallelizing multiple attention and feedforward blocks per layer (2 blocks), claiming that it is easier to train without loss of performance.
+This `<a href="https://arxiv.org/abs/2203.09795">`paper `</a>` propose parallelizing multiple attention and feedforward blocks per layer (2 blocks), claiming that it is easier to train without loss of performance.
 
 You can try this variant as follows
 
@@ -1278,7 +1264,7 @@ preds = v(img) # (4, 1000)
 
 <img src="./images/learnable-memory-vit.png" width="350px"></img>
 
-This <a href="https://arxiv.org/abs/2203.15243">paper</a> shows that adding learnable memory tokens at each layer of a vision transformer can greatly enhance fine-tuning results (in addition to learnable task specific CLS token and adapter head).
+This `<a href="https://arxiv.org/abs/2203.15243">`paper `</a>` shows that adding learnable memory tokens at each layer of a vision transformer can greatly enhance fine-tuning results (in addition to learnable task specific CLS token and adapter head).
 
 You can use this with a specially modified `ViT` as follows
 
@@ -1334,9 +1320,9 @@ logits2 = adapter2(img) # (4, 4) - predict 4 classes off frozen ViT backbone wit
 
 <img src="./images/dino.png" width="350px"></img>
 
-You can train `ViT` with the recent SOTA self-supervised learning technique, <a href="https://arxiv.org/abs/2104.14294">Dino</a>, with the following code.
+You can train `ViT` with the recent SOTA self-supervised learning technique, `<a href="https://arxiv.org/abs/2104.14294">`Dino `</a>`, with the following code.
 
-<a href="https://www.youtube.com/watch?v=h3ij3F3cPIk">Yannic Kilcher</a> video
+`<a href="https://www.youtube.com/watch?v=h3ij3F3cPIk">`Yannic Kilcher `</a>` video
 
 ```python
 import torch
@@ -1388,7 +1374,7 @@ torch.save(model.state_dict(), './pretrained-net.pt')
 
 <img src="./images/esvit.png" width="350px"></img>
 
-<a href="https://arxiv.org/abs/2106.09785">`EsViT`</a> is a variant of Dino (from above) re-engineered to support efficient `ViT`s with patch merging / downsampling by taking into an account an extra regional loss between the augmented views. To quote the abstract, it `outperforms its supervised counterpart on 17 out of 18 datasets` at 3 times higher throughput.
+`<a href="https://arxiv.org/abs/2106.09785">EsViT``</a>` is a variant of Dino (from above) re-engineered to support efficient `ViT`s with patch merging / downsampling by taking into an account an extra regional loss between the augmented views. To quote the abstract, it `outperforms its supervised counterpart on 17 out of 18 datasets` at 3 times higher throughput.
 
 Even though it is named as though it were a new `ViT` variant, it actually is just a strategy for training any multistage `ViT` (in the paper, they focused on Swin). The example below will show how to use it with `CvT`. You'll need to set the `hidden_layer` to the name of the layer within your efficient ViT that outputs the non-average pooled visual representations, just before the global pooling and projection to logits.
 
@@ -1581,7 +1567,7 @@ embeddings # ((1, 257, 192), (1, 17, 384)) - (batch x patches x dimension) <- la
 
 There may be some coming from computer vision who think attention still suffers from quadratic costs. Fortunately, we have a lot of new techniques that may help. This repository offers a way for you to plugin your own sparse attention transformer.
 
-An example with <a href="https://arxiv.org/abs/2102.03902">Nystromformer</a>
+An example with `<a href="https://arxiv.org/abs/2102.03902">`Nystromformer `</a>`
 
 ```bash
 $ pip install nystrom-attention
@@ -1611,11 +1597,11 @@ img = torch.randn(1, 3, 2048, 2048) # your high resolution picture
 v(img) # (1, 1000)
 ```
 
-Other sparse attention frameworks I would highly recommend is <a href="https://github.com/lucidrains/routing-transformer">Routing Transformer</a> or <a href="https://github.com/lucidrains/sinkhorn-transformer">Sinkhorn Transformer</a>
+Other sparse attention frameworks I would highly recommend is `<a href="https://github.com/lucidrains/routing-transformer">`Routing Transformer `</a>` or `<a href="https://github.com/lucidrains/sinkhorn-transformer">`Sinkhorn Transformer `</a>`
 
 ### Combining with other Transformer improvements
 
-This paper purposely used the most vanilla of attention networks to make a statement. If you would like to use some of the latest improvements for attention nets, please use the `Encoder` from <a href="https://github.com/lucidrains/x-transformers">this repository</a>.
+This paper purposely used the most vanilla of attention networks to make a statement. If you would like to use some of the latest improvements for attention nets, please use the `Encoder` from `<a href="https://github.com/lucidrains/x-transformers">`this repository `</a>`.
 
 ex.
 
@@ -1702,14 +1688,12 @@ preds = v(img)
 
 Coming from computer vision and new to transformers? Here are some resources that greatly accelerated my learning.
 
-1. <a href="http://jalammar.github.io/illustrated-transformer/">Illustrated Transformer</a> - Jay Alammar
-
-2. <a href="http://peterbloem.nl/blog/transformers">Transformers from Scratch</a>  - Peter Bloem
-
-3. <a href="https://nlp.seas.harvard.edu/2018/04/03/attention.html">The Annotated Transformer</a> - Harvard NLP
-
+1. `<a href="http://jalammar.github.io/illustrated-transformer/">`Illustrated Transformer `</a>` - Jay Alammar
+2. `<a href="http://peterbloem.nl/blog/transformers">`Transformers from Scratch `</a>`  - Peter Bloem
+3. `<a href="https://nlp.seas.harvard.edu/2018/04/03/attention.html">`The Annotated Transformer `</a>` - Harvard NLP
 
 ## Citations
+
 ```bibtex
 @article{hassani2021escaping,
     title   = {Escaping the Big Data Paradigm with Compact Transformers},

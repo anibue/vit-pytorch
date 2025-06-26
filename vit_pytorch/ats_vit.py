@@ -176,7 +176,7 @@ class Attention(nn.Module):
         """
         初始化ATS（Adaptive Token Sampling）模块。
 
-        参数:
+        参数:        git push origin main
             dim (int): 输入特征的维度。
             heads (int, optional): 多头注意力机制中的头数，默认为8。
             dim_head (int, optional): 每个注意力头的维度，默认为64。
